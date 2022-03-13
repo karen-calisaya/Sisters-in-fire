@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('../partials/head.ejs') %>
+
+    <body>
+
+        <%- include('../partials/header.ejs') %>
+
+            <main class="form-main">
+
+                <form action="/users/login" method="POST" id="form">
+
+                    <div class="formulario">
+
+                        <h2 class="titulo">Mi sesión</h2>
+
+                        <div class="input-datos">
+                            <label for="email">E-mail</label><br>
+                            <!--como propiedad de input podemos agregar un required (por defecto saldra un aviso) o mejor podemos hacer un span-->
+                            <input class="input-estilo inputData" type="email" name="email" id="inputEmail">
+                            <!-- <i class="fas fa-check-circle"></i> 
+                            <i class="fas fa-exclamation-circle"></i> -->
+                            <% if (locals.errors && errors.email) { %>
+                                <span class="error-msj" id="emailErrors"><%= errors.email.msg %></span>
+                            <% } %>
+                            <span class="error-msj" id="emailErrors"></span>
+                        </div>
+
+                        <div class="input-datos">
+                            <label for="pass">Contraseña</label><br>
+                            <input class="input-estilo inputData" type="password" name="pass" id="inputPass">
+                            <!-- <i class="fas fa-check-circle"></i> 
+                            <i class="fas fa-exclamation-circle"></i> -->
+                            <% if (locals.errors && errors.pass) { %>
+                                <span class="error-msj" id="passErrors"><%= errors.pass.msg %></span>
+                            <% } %>
+                            <span class="error-msj" id="passErrors"></span>
+                        </div>
+
+                        <div class="check">
+                            <input type="checkbox" name="remember" id="check"><label for="check">Recordarme</label>
+                            <!-- dentro del input puedo colocar checked, y ya me lo marcaria  -->
+                        </div>
+                        
+                        <% if (locals.errors && errors.custom) { %>
+                            <span class="error-msj"><%= errors.custom.msg %></span>
+                        <% } %>
+
+                        <div class="button">
+                            <button type="submit">INICIAR SESIÓN</button><br>
+                            <!-- onclick="alert('Estamos trabajando en ello')" -->
+                        </div>
+
+                        <span><a href="register">¿No tenés cuenta? Registrarme</a></span>
+                    </div>
+
+                </form>
+            </main>
+
+            <%- include('../partials/footer.ejs') %>
+
+            <%- include('../partials/script.ejs') %> 
+
+            <!-- script front end validations-->
+            <script src="/js/usersValidations/loginValidations.js" defer></script> 
+
+    </body>
+
+</html>
